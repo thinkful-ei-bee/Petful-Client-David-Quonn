@@ -14,14 +14,44 @@ export default class AdoptionPage extends React.Component{
         clickedAdoptDog: false,
         clickedAdoptCat: false
     }
+    nextTurn = () => {
+        const newDogs = [...this.state.dogs];
+        const newCats = [...this.state.cats];
+
+        newDogs.shift();
+        newCats.shift();
+
+        Promise.all([PetApiService.removeCat(), PetApiService.removeDog()]).then (
+            () => Promise.all([PetApiService.getCat(), PetApiService.getDog()]).then (
+                arr => {
+                    newDogs.push(arr[1]);
+                    newCats.push(arr[0]);
+                    this.setState({
+                        dogs: newDogs,
+                        cats: newCats,
+                        userPos: (this.state.userPos + 2) % 3,
+                        clickedAdoptDog: false,
+                        clickedAdoptCat: false
+                    })
+                }
+            )
+        )
+
+    }
 
     componentDidMount(){
+        this.interval = setInterval(() => this.nextTurn(), 20000);
+
         Promise.all([PetApiService.getCat(), PetApiService.getDog()])
         .then(arr => this.setState({
             dogs: [arr[1]],
             cats: [arr[0]],
             userPos: Math.floor(Math.random() * 3)
         }))
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
     }
 
     nextDog = () => {

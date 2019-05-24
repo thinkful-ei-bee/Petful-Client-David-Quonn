@@ -6,7 +6,7 @@ export default class Pet extends React.Component{
     render (){
         const available = this.props.status === 'Available for Adoption';
         return (
-            <section class="pet-area">
+            <section className="pet-area">
                 <img src={this.props.pet.imageURL} height="300" width="300" alt="pet for adoption" />
                 <p>{this.props.pet.imageDescription}</p>
                 <p>Name: {this.props.pet.name}</p>
