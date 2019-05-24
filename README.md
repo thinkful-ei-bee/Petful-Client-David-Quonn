@@ -2,8 +2,8 @@
 
 ## Authors
 
-David Bolin
-Quonn Bernard
+### David Bolin
+### Quonn Bernard
 
 ## Summary
 A web app for a first-in-first-out pet adoption agency. The user is told how many others are waiting to adopt and can only adopt when the others have taken their turns. At that point the user can only adopt a cat or a dog or both, but only the ones first in their respective lines.
