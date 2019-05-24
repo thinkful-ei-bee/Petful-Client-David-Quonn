@@ -3,19 +3,19 @@ import "./App.css"
 import Navigation from './Components/Navigation/Navigation'
 import AdoptionPage from './Components/AdoptionPage/AdoptionPage'
 import LandingPage from './Components/LandingPage/LandingPage'
-import { Route, Switch } from "react-router-dom";
+import { Route } from "react-router-dom";
 
 function App() {
 
   return (
     <div className="App">
       <header>
-        <Navigation></Navigation>
+          <Navigation></Navigation>
       </header>
-      <Switch>
-      <Route exact path={"/"}  component={LandingPage}/>
-      <Route exact path={"/adopt"} component={AdoptionPage} />
-      </Switch>
+      <main>
+         <Route exact path={"/"}  component={LandingPage}/>
+         <Route exact path={"/adopt"} component={AdoptionPage} />
+      </main>
     </div>
   );
 }
