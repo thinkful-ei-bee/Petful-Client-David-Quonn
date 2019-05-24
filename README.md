@@ -14,7 +14,7 @@ A web app for a first-in-first-out pet adoption agency. The user is told how man
 The live app is [here](https://petful.davidbolin1016.now.sh/).
 
 ## Screenshots
-![Landing Page](screenshots/ScreenClip.png)
+![Landing Page](/screenshots/ScreenClip.png)
 
 ![Adoption Page](screenshots/ScreenClip2.png)
 
