@@ -7,10 +7,6 @@ import { Route, Switch } from "react-router-dom";
 
 function App() {
 
-  const handleButtonClick = () => {
-    console.log("u")
-  }
-
   return (
     <div className="App">
       <header>

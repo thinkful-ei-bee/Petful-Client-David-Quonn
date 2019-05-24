@@ -16,7 +16,7 @@ export default class Pet extends React.Component{
                 <p>Story: {this.props.pet.story}</p>
                 <p>Status: {this.props.status}</p>
                 <span>
-                    <button disabled={this.props.position === 3}>See Next</button>
+                    <button disabled={this.props.position === 2}onClick={this.props.next}>See Next</button>
                     <button disabled={this.props.position === 0}>See Previous</button>
                     <button disabled={!available}>Adopt</button>
                 </span>

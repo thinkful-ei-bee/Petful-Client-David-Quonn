@@ -22,6 +22,37 @@ export default class AdoptionPage extends React.Component{
         }))
     }
 
+    nextDog = () => {
+        if (this.state.dogs[this.state.dogPos + 1]) {
+            this.setState({
+                dogPos: this.state.dogPos + 1
+            });
+        } else {
+            return PetApiService.removeDog().then(e => {
+                PetApiService.getDog().then(dog => {
+                    const newArr = [...this.state.dogs];
+                    newArr.push(dog);
+                    this.setState({
+                        dogs: newArr,
+                        dogPos: this.state.dogPos + 1
+                    });
+                });
+            });
+        }
+    }
+
+    nextCat() {
+
+    }
+
+    previousDog() {
+
+    }
+
+    previousCat() {
+
+    }
+
     render(){
         const cats = this.state.cats;
         const dogs = this.state.dogs;
@@ -47,8 +78,8 @@ export default class AdoptionPage extends React.Component{
             <section>
                 <h1>Adoption Page</h1>
                 <div className="pet-area">
-                    <Pet pet={cats[0]} status={catStatus} position={this.state.catPos}/>
-                    <Pet pet={dogs[0]} status={dogStatus} position={this.state.dogPos}/>
+                    <Pet pet={cats[this.state.catPos]} status={catStatus} position={this.state.catPos}/>
+                    <Pet pet={dogs[this.state.dogPos]} status={dogStatus} position={this.state.dogPos} next={this.nextDog}/>
                 </div>
                 <Link to={'/'}>Back To Home</Link>
             </section>
