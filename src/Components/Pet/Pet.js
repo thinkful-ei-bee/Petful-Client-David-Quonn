@@ -4,6 +4,7 @@ export default class Pet extends React.Component{
 
 
     render (){
+        const available = this.props.status === 'Available for Adoption';
         return (
             <section class="pet-area">
                 <img src={this.props.pet.imageURL} height="300" width="300" alt="pet for adoption" />
@@ -17,7 +18,7 @@ export default class Pet extends React.Component{
                 <span>
                     <button>See Next</button>
                     <button>See Previous</button>
-                    <button>Adopt</button>
+                    <button disabled={!available}>Adopt</button>
                 </span>
             </section>  
         )
