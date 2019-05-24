@@ -1,68 +1,39 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Petful
 
-## Available Scripts
+## Authors
 
-In the project directory, you can run:
+David Bolin
+Quonn Bernard
 
-### `npm start`
+## Summary
+A web app for a first-in-first-out pet adoption agency. The user is told how many others are waiting to adopt and can only adopt when the others have taken their turns. At that point the user can only adopt a cat or a dog or both, but only the ones first in their respective lines.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## Live app
 
-### `npm test`
+The live app is [here](https://wiki-app.davidbolin1016.now.sh/).
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Screenshots
+![Landing Page](screenshots/ScreenClip.png)
 
-### `npm run build`
+![Page List](screenshots/ScreenClip2.png)
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Tech stack
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+The client uses CSS3 and JavaScript ES6 together with React.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The server is also in JavaScript (at [https://github.com/davidbolin1016/wiki-server]) and uses Express, as well as PostgreSQL for the database.
 
-### `npm run eject`
+## Code base
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+The source folder has three sub-folders, "components," "services," and "user-context."
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+UserContext creates a context with username and homepage id so that the app can keep track of the current user.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+The services folder contains files for communicating with the server, whether for login or for retreiving or posting information to or from the server.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+The components folder contains files creating React components for the main app (App), each distinct page (EditPage, LandingPage, ListPage, NotFound, PersonalPage, RegistrationPage, SignIn), as well as several reusable components (NavBar, Emoji, List).
 
-## Learn More
+## API documentation
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+API documentation can be found at the [repo for the server.](https://github.com/davidbolin1016/wiki-server) 
