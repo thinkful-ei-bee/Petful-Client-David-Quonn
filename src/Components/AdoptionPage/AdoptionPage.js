@@ -41,16 +41,35 @@ export default class AdoptionPage extends React.Component{
         }
     }
 
-    nextCat() {
-
+    nextCat = () => {
+        if (this.state.cats[this.state.catPos + 1]) {
+            this.setState({
+                catPos: this.state.catPos + 1
+            });
+        } else {
+            return PetApiService.removeCat().then(e => {
+                PetApiService.getCat().then(cat => {
+                    const newArr = [...this.state.cats];
+                    newArr.push(cat);
+                    this.setState({
+                        cats: newArr,
+                        catPos: this.state.catPos + 1
+                    });
+                });
+            });
+        }
     }
 
-    previousDog() {
-
+    previousDog = () => {
+            this.setState({
+                dogPos: this.state.dogPos - 1
+            });
     }
 
-    previousCat() {
-
+    previousCat = () => {
+        this.setState({
+            catPos: this.state.catPos - 1
+        });
     }
 
     render(){
@@ -78,8 +97,8 @@ export default class AdoptionPage extends React.Component{
             <section>
                 <h1>Adoption Page</h1>
                 <div className="pet-area">
-                    <Pet pet={cats[this.state.catPos]} status={catStatus} position={this.state.catPos}/>
-                    <Pet pet={dogs[this.state.dogPos]} status={dogStatus} position={this.state.dogPos} next={this.nextDog}/>
+                    <Pet pet={cats[this.state.catPos]} status={catStatus} position={this.state.catPos} next={this.nextCat} prev={this.previousCat}/>
+                    <Pet pet={dogs[this.state.dogPos]} status={dogStatus} position={this.state.dogPos} next={this.nextDog} prev={this.previousDog}/>
                 </div>
                 <Link to={'/'}>Back To Home</Link>
             </section>
