@@ -14,6 +14,11 @@ export default class Pet extends React.Component{
                 <p>Breed: {this.props.pet.breed}</p>
                 <p>Story: {this.props.pet.story}</p>
                 <p>Status: {this.props.status}</p>
+                <span>
+                    <button>See Next</button>
+                    <button>See Previous</button>
+                    <button>Adopt</button>
+                </span>
             </section>  
         )
     }
