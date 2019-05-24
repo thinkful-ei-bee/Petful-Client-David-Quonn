@@ -18,17 +18,31 @@ export default class AdoptionPage extends React.Component{
         .then(arr => this.setState({
             dogs: [arr[1]],
             cats: [arr[0]],
+            userPos: Math.floor(Math.random() * 3)
         }))
     }
 
     render(){
         const cats = this.state.cats;
         const dogs = this.state.dogs;
+        let catStatus, dogStatus;
 
-        const catStatus = (this.state.catPos === 0) ? '1st in line for adoption' : 'Waiting in line for adoption';
+        if (this.state.catPos === 0 & this.state.userPos === 0) {
+            catStatus = 'Available for Adoption'
+        } else if (this.state.catPos === 0) {
+            catStatus = '1st in line for adoption, being considered by an earlier adopter'
+        } else {
+            catStatus = 'Waiting in line for adoption';
+        }
+     
         
-        const dogStatus = (this.state.dogPos === 0) ? '1st in line for adoption' : 'Waiting in line for adoption';
-
+        if (this.state.dogPos === 0 & this.state.userPos === 0) {
+            dogStatus = 'Available for Adoption'
+        } else if (this.state.dogPos === 0) {
+            dogStatus = '1st in line for adoption, being considered by an earlier adopter'
+        } else {
+            dogStatus = 'Waiting in line for adoption';
+        }
         return(
             <section>
                 <h1>Adoption Page</h1>
