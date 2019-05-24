@@ -30,7 +30,7 @@ export default class AdoptionPage extends React.Component{
         if (this.state.catPos === 0 & this.state.userPos === 0) {
             catStatus = 'Available for Adoption'
         } else if (this.state.catPos === 0) {
-            catStatus = '1st in line for adoption, being considered by an earlier adopter'
+            catStatus = `1st in line for adoption, being considered by ${this.state.userPos === 1 ? 'one other ahead of you' : 'two others ahead of you'}`;
         } else {
             catStatus = 'Waiting in line for adoption';
         }
@@ -39,7 +39,7 @@ export default class AdoptionPage extends React.Component{
         if (this.state.dogPos === 0 & this.state.userPos === 0) {
             dogStatus = 'Available for Adoption'
         } else if (this.state.dogPos === 0) {
-            dogStatus = '1st in line for adoption, being considered by an earlier adopter'
+            dogStatus = `1st in line for adoption, being considered by ${this.state.userPos === 1 ? 'one other ahead of you' : 'two others ahead of you'}`;
         } else {
             dogStatus = 'Waiting in line for adoption';
         }
@@ -47,8 +47,8 @@ export default class AdoptionPage extends React.Component{
             <section>
                 <h1>Adoption Page</h1>
                 <div className="pet-area">
-                    <Pet pet={cats[0]} status={catStatus} />
-                    <Pet pet={dogs[0]} status={dogStatus} />
+                    <Pet pet={cats[0]} status={catStatus} position={this.state.catPos}/>
+                    <Pet pet={dogs[0]} status={dogStatus} position={this.state.dogPos}/>
                 </div>
                 <Link to={'/'}>Back To Home</Link>
             </section>
