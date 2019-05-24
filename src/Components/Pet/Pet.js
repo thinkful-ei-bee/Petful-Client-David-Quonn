@@ -1,12 +1,11 @@
 import React from 'react';
 
-
 export default class Pet extends React.Component{
 
 
     render (){
         return (
-            <>
+            <section class="pet-area">
                 <img src={this.props.pet.imageURL} height="300" width="300" alt="pet for adoption" />
                 <p>{this.props.pet.imageDescription}</p>
                 <p>Name: {this.props.pet.name}</p>
@@ -14,7 +13,7 @@ export default class Pet extends React.Component{
                 <p>Age: {this.props.pet.age}</p>
                 <p>Breed: {this.props.pet.breed}</p>
                 <p>Story: {this.props.pet.story}</p>
-            </>
+            </section>  
         )
     }
 }
