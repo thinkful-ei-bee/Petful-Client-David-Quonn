@@ -1,0 +1,12 @@
+.landing-banner{
+    background:url("https://i.imgur.com/r0esWn2.jpg");
+    background-size: cover;
+    height: 200px;
+    margin-top: 0;
+    padding: 30px;
+    color: white;
+}
+
+.landing-banner > h1{
+    margin-top: 0;
+}
