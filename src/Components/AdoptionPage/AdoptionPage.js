@@ -15,20 +15,27 @@ export default class AdoptionPage extends React.Component{
 
     componentDidMount(){
         Promise.all([PetApiService.getCat(), PetApiService.getDog()])
-        .then(arr => this.setState({dogs: [arr[1]], cats: [arr[0]]}))
+        .then(arr => this.setState({
+            dogs: [arr[1]],
+            cats: [arr[0]],
+        }))
     }
 
     render(){
         const cats = this.state.cats;
         const dogs = this.state.dogs;
 
+        const catStatus = (this.state.catPos === 0) ? '1st in line for adoption' : 'Waiting in line for adoption';
+        
+        const dogStatus = (this.state.dogPos === 0) ? '1st in line for adoption' : 'Waiting in line for adoption';
+
         return(
             <section>
                 <h1>Adoption Page</h1>
-                    <div className="pet-area">
-                        <Pet pet={cats[0]} />
-                        <Pet pet={dogs[0]} />
-                    </div>
+                <div className="pet-area">
+                    <Pet pet={cats[0]} status={catStatus} />
+                    <Pet pet={dogs[0]} status={dogStatus} />
+                </div>
                 <Link to={'/'}>Back To Home</Link>
             </section>
         )
