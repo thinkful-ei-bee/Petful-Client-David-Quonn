@@ -24,8 +24,8 @@ export default class AdoptionPage extends React.Component{
         return(
             <section>
                 <h1>Adoption Page</h1>
-                <Pet cats={cats} dogs={dogs}>
-                </Pet>
+                    <Pet pet={cats[0]} />
+                    <Pet pet={dogs[0]} />
                 <Link to={'/'}>Back To Home</Link>
             </section>
         )
