@@ -16,7 +16,7 @@ The live app is [here](https://petful.davidbolin1016.now.sh/).
 ## Screenshots
 ![Landing Page](/screenshots/ScreenClip.png)
 
-![Adoption Page](screenshots/ScreenClip2.png)
+![Adoption Page](/screenshots/ScreenClip2.png)
 
 ## Tech stack
 
