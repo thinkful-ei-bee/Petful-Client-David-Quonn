@@ -2,3 +2,11 @@
   text-align: center;
   margin-bottom: 50px;
 }
+
+button {
+  background-color: darkgray
+}
+
+button[disabled] {
+  background-color: lightgrey
+}

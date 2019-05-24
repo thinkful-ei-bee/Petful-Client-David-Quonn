@@ -10,7 +10,9 @@ export default class AdoptionPage extends React.Component{
         cats: [{}],
         dogPos: 0,
         catPos: 0,
-        userPos: 0
+        userPos: 0,
+        clickedAdoptDog: false,
+        clickedAdoptCat: false
     }
 
     componentDidMount(){
@@ -72,12 +74,26 @@ export default class AdoptionPage extends React.Component{
         });
     }
 
+    adoptDog = () => {
+        this.setState({
+            clickedAdoptDog: true
+        });
+    }
+
+    adoptCat = () => {
+        this.setState({
+            clickedAdoptCat: true
+        })
+    }
+
     render(){
         const cats = this.state.cats;
         const dogs = this.state.dogs;
         let catStatus, dogStatus;
 
-        if (this.state.catPos === 0 & this.state.userPos === 0) {
+        if (this.state.clickedAdoptCat && this.state.catPos === 0) {
+            catStatus = 'You are in the process of adopting this pet';
+        } else if (this.state.catPos === 0 & this.state.userPos === 0) {
             catStatus = 'Available for Adoption'
         } else if (this.state.catPos === 0) {
             catStatus = `1st in line for adoption, being considered by ${this.state.userPos === 1 ? 'one other ahead of you' : 'two others ahead of you'}`;
@@ -85,8 +101,9 @@ export default class AdoptionPage extends React.Component{
             catStatus = 'Waiting in line for adoption';
         }
      
-        
-        if (this.state.dogPos === 0 & this.state.userPos === 0) {
+        if (this.state.clickedAdoptDog && this.state.dogPos === 0) {
+            dogStatus = 'You are in the process of adopting this pet'
+        } else if (this.state.dogPos === 0 & this.state.userPos === 0) {
             dogStatus = 'Available for Adoption'
         } else if (this.state.dogPos === 0) {
             dogStatus = `1st in line for adoption, being considered by ${this.state.userPos === 1 ? 'one other ahead of you' : 'two others ahead of you'}`;
@@ -97,8 +114,8 @@ export default class AdoptionPage extends React.Component{
             <section>
                 <h1>Adoption Page</h1>
                 <div className="pet-area">
-                    <Pet pet={cats[this.state.catPos]} status={catStatus} position={this.state.catPos} next={this.nextCat} prev={this.previousCat}/>
-                    <Pet pet={dogs[this.state.dogPos]} status={dogStatus} position={this.state.dogPos} next={this.nextDog} prev={this.previousDog}/>
+                    <Pet pet={cats[this.state.catPos]} status={catStatus} position={this.state.catPos} next={this.nextCat} prev={this.previousCat} adopt={this.adoptCat}/>
+                    <Pet pet={dogs[this.state.dogPos]} status={dogStatus} position={this.state.dogPos} next={this.nextDog} prev={this.previousDog} adopt={this.adoptDog}/>
                 </div>
                 <Link to={'/'}>Back To Home</Link>
             </section>
