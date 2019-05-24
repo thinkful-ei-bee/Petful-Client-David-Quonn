@@ -23,10 +23,10 @@ export default function Navigation() {
                 <div className="nav-grid-item">
                     <ul>
                         <li>
-                            <Link to={'/adopt'} className="nav-links">Home</Link>
+                            <Link to={'/adopt'} className="nav-links">Adopt</Link>
                         </li>
                         <li>
-                            <Link to={'/adopt'} className="nav-links">Adopt</Link>
+                            <Link to={'/'} className="nav-links">Home</Link>
                         </li>
                     </ul>
 
