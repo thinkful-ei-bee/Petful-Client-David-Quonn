@@ -12,31 +12,45 @@ export default class AdoptionPage extends React.Component{
         catPos: 0,
         userPos: 0,
         clickedAdoptDog: false,
-        clickedAdoptCat: false
+        clickedAdoptCat: false,
+        adopted: false
     }
     nextTurn = () => {
-        const newDogs = [...this.state.dogs];
-        const newCats = [...this.state.cats];
+        let adopted = false;
+        if (this.state.clickedAdoptCat || this.state.clickedAdoptDog) {
+            adopted = true;
+        }
 
-        newDogs.shift();
-        newCats.shift();
+        if (!adopted) {
+            const newDogs = [...this.state.dogs];
+            const newCats = [...this.state.cats];
 
-        Promise.all([PetApiService.removeCat(), PetApiService.removeDog()]).then (
-            () => Promise.all([PetApiService.getCat(), PetApiService.getDog()]).then (
-                arr => {
-                    newDogs.push(arr[1]);
-                    newCats.push(arr[0]);
-                    this.setState({
-                        dogs: newDogs,
-                        cats: newCats,
-                        userPos: (this.state.userPos + 2) % 3,
-                        clickedAdoptDog: false,
-                        clickedAdoptCat: false
-                    })
-                }
+            newDogs.shift();
+            newCats.shift();
+
+            Promise.all([PetApiService.removeCat(), PetApiService.removeDog()]).then (
+                () => Promise.all([PetApiService.getCat(), PetApiService.getDog()]).then (
+                    arr => {
+                       newDogs.push(arr[1]);
+                       newCats.push(arr[0]);
+                       this.setState({
+                          dogs: newDogs,
+                          cats: newCats,
+                          userPos: (this.state.userPos + 2) % 3,
+                          clickedAdoptDog: false,
+                          clickedAdoptCat: false
+                       })
+                    }
+                )
             )
-        )
-
+        } else {
+            this.setState({
+                dogPos: 0,
+                catPos: 0,
+                userPos: 0,
+                adopted: true
+            });
+        }
     }
 
     componentDidMount(){
@@ -117,9 +131,22 @@ export default class AdoptionPage extends React.Component{
     }
 
     render(){
+
         const cats = this.state.cats;
         const dogs = this.state.dogs;
         let catStatus, dogStatus;
+
+        if (this.state.adopted) {
+            return (
+                <section>
+                    <h1>You have adopted a pet!</h1>
+                    <div className="pet-area">
+                        {this.state.clickedAdoptCat && <Pet pet={cats[this.state.catPos]} status="You have adopted this pet" position={this.state.catPos} next={this.nextCat} prev={this.previousCat} adopt={this.adoptCat}/>}
+                        {this.state.clickedAdoptDog && <Pet pet={dogs[this.state.dogPos]} status="You have adopted this pet" position={this.state.dogPos} next={this.nextDog} prev={this.previousDog} adopt={this.adoptDog}/>}
+                    </div>
+                </section>
+            );
+        }
 
         if (this.state.clickedAdoptCat && this.state.catPos === 0) {
             catStatus = 'You are in the process of adopting this pet';
